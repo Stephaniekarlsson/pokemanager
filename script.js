@@ -1,0 +1,121 @@
+const pokemonQuantity = 200;
+const pokemonList = document.querySelector('.pokemon-list');
+const searchInput = document.querySelector('#search-input');
+const searchNotFound = document.querySelector('#search-not-found');
+const errorMessage = document.querySelector('#error-message');
+const listItem = document.createElement('div');
+const url = `https://pokeapi.co/api/v2/pokemon?limit=${pokemonQuantity}`;
+const championsBtn = document.querySelector('#champions-btn')
+const myTeamBtn = document.querySelector('#myteam-btn')
+const championView = document.querySelector('.champion-view')
+const teamView = document.querySelector('.team-view')
+
+// Lista för att förvara alla Pokémon
+let pokemons = [];
+
+async function getData(url) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        errorMessage.textContent = 'Det gick inte att hämta datan. Försök igen om en stund!';
+    }
+}
+
+async function displayPokemonsFront() {
+    pokemonList.innerHTML = "";
+
+    try {
+        const pokemonData = await getData(url);
+        pokemons = pokemonData.results;
+
+        for (const pokemon of pokemons) {
+            const listItem = document.createElement('div');
+            const pokemonData = await getData(pokemon.url);
+            const pokemonId = pokemonData.id;
+            const pokemonName = pokemonData.name;
+            const spriteFront = pokemonData.sprites.front_default;
+            const nameFirstLetter = pokemonName[0].toUpperCase() + pokemonName.slice(1);
+
+            listItem.className = "list-item";
+            listItem.innerHTML = `
+                <div class="number-wrap">
+                    <p class="number-id">#${pokemonId}</p>
+                </div>
+                <div class="img-wrap">
+                    <img class="front-img" src="${spriteFront}" alt="${pokemonName}">
+                    <p class="pokemon-name">${nameFirstLetter}</p>
+                    <div class="add-btns">
+                        <button class="add-to-team" data-id="${pokemonId}" data-name="${pokemonName}">Add to team</button>
+                    </div>
+                </div>
+            `;
+
+            listItem.dataset.id = pokemonId;
+            listItem.dataset.name = pokemonName.toLowerCase();
+            
+            const addToTeamBtn = listItem.querySelector('.add-to-team');
+           
+            addToTeamBtn.addEventListener('click', () => {
+                addTeam(pokemonId, pokemonName);
+            });
+
+            pokemonList.appendChild(listItem);
+        }
+    } catch (error) {
+        console.error('Något gick fel! Testa igen om en stund', error);
+    }
+}
+
+
+displayPokemonsFront();
+
+searchInput.addEventListener('keyup', function() {
+    let inputValue = searchInput.value.toLowerCase(); 
+
+    pokemons.forEach(function(pokemon) {
+        const listItem = pokemon.listItem;
+        const pokemonId = listItem.dataset.id;
+        const pokemonName = listItem.dataset.name;
+
+        const isMatch = pokemonName.includes(inputValue) || pokemonId.includes(inputValue);
+
+        if (isMatch) {
+            listItem.style.display = 'block';
+        } else {
+            listItem.style.display = 'none';
+        }
+    });
+});
+
+
+myTeamBtn.addEventListener('click', () => {
+    teamView.style.display = 'block';
+    championView.style.display = 'none';
+});
+
+championsBtn.addEventListener('click', () => {
+    championView.style.display = 'block';
+    teamView.style.display = 'none';
+});
+
+
+// ----------------- TEAM ---------------
+const addToTeam = listItem.querySelector('.add-to-team');
+const teamMaxSize = 3;
+let myTeamList = [];
+let reserveList =[];
+
+
+
+function addTeam(pokemonId, pokemonName) {
+    if (myTeamList.length < teamMaxSize) {
+        myTeamList.push({ pokemonId, pokemonName });
+        console.log('Added to team:', myTeamList);
+    } else {
+        addReserve(pokemonId, pokemonName);
+    }
+}
+
+

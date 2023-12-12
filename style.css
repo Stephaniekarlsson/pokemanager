@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Nova+Square&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nova Square', sans-serif;
+}
+
+:root {
+    --yellow: #feca1b;
+    --blue: #3761a8;
+    --red: #f50001;
+    --dark: #273135;
+    --grayscale-medium: #4e5355;
+    --grayscale-dark: #444c50;
+    --grayscale-light: #acacac;
+}
+
+body {
+    background-image: url(./bilder/background.png);
+    background-size: contain;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0em;
+}
+
+#champions-btn, #myteam-btn {
+    border: 2px solid var(--blue);
+    font-weight: 700;
+    color: var(--blue);
+    padding: .3em .5em;
+    background-color: var(--yellow);
+}
+
+#champions-btn:hover, #myteam-btn:hover {
+    color: var(--dark);
+    border: 2px solid var(--dark);
+}
+
+.selected {
+    background-color: var(--blue);
+    font-size: 110%;
+    color: var(--yellow);
+}
+
+/* --------CHAMPIONS VIEW------------ */
+.search-wrapper {
+    margin: 2em auto;
+    padding: 0 0 0 .5em ;
+    background-color: var(--dark);
+    border: 1px solid var(--blue);
+    width: fit-content;
+    border-radius: .5em;
+    display: flex; 
+    align-items: center;
+    gap: .5em;
+}
+
+.search-wrapper > i {
+    color: var(--blue);
+}
+
+#search-input {
+    background-color: var(--dark);
+    width: 15em;
+    padding: .2em .5em;
+    border-radius: .5em;
+    color: var(--yellow);
+    outline: none;
+    border: none;
+    box-shadow: 2px 2px 5px rgb(24, 24, 24) inset;
+}
+
+.pokemon-container {
+    max-height: 38em;
+    overflow-y: auto;
+    margin: 0 1em;
+
+}
+.pokemon-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+}
+
+.list-item {
+    background-color: var(--grayscale-medium);
+    margin: 1em .5em;
+    border-radius: .5em;
+    box-shadow: 0px 1px 10px var(--yellow);
+    background-color: #4e5355;
+    width: 12em;
+    height: 15.5em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.number-wrap {
+    min-height: 16px;
+    text-align: left;
+    padding: 0 8px;
+    color: var(--dark);
+    background-color: rgb(245,0,1, 0.3);
+    border-radius: .5em 0;
+    margin: .1em;
+    width: fit-content;
+}
+
+.front-img {
+   width: 150px;
+   height: auto;
+}
+
+.pokemon-name {
+    color: var(--yellow);
+    background-color: var(--grayscale-dark);
+    padding: 1.6em 0 0 0;
+    margin-top: -2.4em;
+    border-radius: .5em .5em 0 0;
+    font-size: 1.5em;
+}
+
+.add-btns {
+    margin-top: -1.2em;
+    background-color: var(--grayscale-dark);
+    padding: .3em 0 .6em 0;
+    border-radius: 0 0 .5em .5em;
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
+
+}
+
+.add-to-team {
+    padding: .2em;
+    border-radius: .5em;
+    background-color: var(--yellow);
+     color: var(--dark);
+     margin: 0 1em;
+     border: none;
+     box-shadow: 1px 1px 5px rgb(26, 26, 26);
+}
+
+.add-to-team:hover, .add-as-reserve:hover, #champions-btn:hover, #myteam-btn:hover {
+    background-color: #cea10c;
+     transition: all ease-in .3s;
+}
+
+    #error-message {
+    color: var(--yellow);
+    font-size: 1.5em;
+    text-align: center;
+    padding: 1em;
+    width: 10em;
+    margin: 0 auto;
+}
+
+/* ------ MY TEAM VIEW -------- */
+.team-view {
+    display: flex;
+    flex-direction: column;
+    display: none;
+    
+}
+.my-team-top, .reserves-top {
+    color: var(--blue);
+    background-color: var(--yellow);
+    display: inline;
+    padding: .3em 0.5em;
+    border: 3px solid var(--blue);
+    border-bottom: none;
+    border-radius: .5em .5em 0 0;
+    font-weight: 700;
+    
+}
+
+.right {
+    display: flex;
+    justify-content: end;
+    margin: 0 3em -3em 0;
+}
+
+.left {
+    margin: 3em 3em -2em 3em;
+
+}
+
+.my-team-container {
+    background-color: var(--grayscale-dark);
+    height: 7em;
+    margin: 2em 3em;
+    border-radius: 0 .5em 0.5em 0.5em;
+}
+
+.reverse {
+    border-radius: 0.5em 0 .5em .5em;
+}
+
+

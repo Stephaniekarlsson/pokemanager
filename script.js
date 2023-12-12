@@ -1,10 +1,9 @@
-const pokemonQuantity = 200;
 const pokemonList = document.querySelector('.pokemon-list');
 const searchInput = document.querySelector('#search-input');
 const searchNotFound = document.querySelector('#search-not-found');
 const errorMessage = document.querySelector('#error-message');
 const listItem = document.createElement('div');
-const url = `https://pokeapi.co/api/v2/pokemon?limit=${pokemonQuantity}`;
+const url = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
 const championsBtn = document.querySelector('#champions-btn')
 const myTeamBtn = document.querySelector('#myteam-btn')
 const championView = document.querySelector('.champion-view')
@@ -39,12 +38,13 @@ async function displayPokemonsFront() {
             const nameFirstLetter = pokemonName[0].toUpperCase() + pokemonName.slice(1);
 
             listItem.className = "list-item";
+            const imgSrc = spriteFront ? spriteFront : "./bilder/no-sprite.png";
             listItem.innerHTML = `
                 <div class="number-wrap">
                     <p class="number-id">#${pokemonId}</p>
                 </div>
                 <div class="img-wrap">
-                    <img class="front-img" src="${spriteFront}" alt="${pokemonName}">
+                    <img class="front-img" src="${imgSrc}" alt="${pokemonName}">
                     <p class="pokemon-name">${nameFirstLetter}</p>
                     <div class="add-btns">
                         <button class="add-to-team" data-id="${pokemonId}" data-name="${pokemonName}">Add to team</button>
@@ -52,15 +52,7 @@ async function displayPokemonsFront() {
                 </div>
             `;
 
-            listItem.dataset.id = pokemonId;
-            listItem.dataset.name = pokemonName.toLowerCase();
-            
-            const addToTeamBtn = listItem.querySelector('.add-to-team');
-           
-            addToTeamBtn.addEventListener('click', () => {
-                addTeam(pokemonId, pokemonName);
-            });
-
+            pokemon.listItem = listItem;
             pokemonList.appendChild(listItem);
         }
     } catch (error) {
@@ -68,54 +60,26 @@ async function displayPokemonsFront() {
     }
 }
 
-
 displayPokemonsFront();
+
 
 searchInput.addEventListener('keyup', function() {
     let inputValue = searchInput.value.toLowerCase(); 
 
     pokemons.forEach(function(pokemon) {
         const listItem = pokemon.listItem;
-        const pokemonId = listItem.dataset.id;
-        const pokemonName = listItem.dataset.name;
 
-        const isMatch = pokemonName.includes(inputValue) || pokemonId.includes(inputValue);
+        if (listItem) {
+            const pokemonId = listItem.dataset.id;
+            const pokemonName = listItem.dataset.name;
 
-        if (isMatch) {
-            listItem.style.display = 'block';
-        } else {
-            listItem.style.display = 'none';
+            const isMatch = (pokemonName && pokemonName.includes(inputValue)) || (pokemonId && pokemonId.includes(inputValue));
+
+            if (isMatch) {
+                listItem.style.display = 'block';
+            } else {
+                listItem.style.display = 'none';
+            }
         }
     });
 });
-
-
-myTeamBtn.addEventListener('click', () => {
-    teamView.style.display = 'block';
-    championView.style.display = 'none';
-});
-
-championsBtn.addEventListener('click', () => {
-    championView.style.display = 'block';
-    teamView.style.display = 'none';
-});
-
-
-// ----------------- TEAM ---------------
-const addToTeam = listItem.querySelector('.add-to-team');
-const teamMaxSize = 3;
-let myTeamList = [];
-let reserveList =[];
-
-
-
-function addTeam(pokemonId, pokemonName) {
-    if (myTeamList.length < teamMaxSize) {
-        myTeamList.push({ pokemonId, pokemonName });
-        console.log('Added to team:', myTeamList);
-    } else {
-        addReserve(pokemonId, pokemonName);
-    }
-}
-
-

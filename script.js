@@ -77,10 +77,8 @@ function displaySearchedPokemons(searchedPokemons) {
     pokemonList.innerHTML = "";
     
     searchedPokemons.forEach(pokemon => {
-        pokemonList.appendChild(pokemon.listItem);
+        if (pokemon.listItem) {
+            pokemonList.appendChild(pokemon.listItem);
+        }
     });
 }
-
-
-
-

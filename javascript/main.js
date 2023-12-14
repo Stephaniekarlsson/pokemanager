@@ -8,7 +8,6 @@ const championsBtn = document.querySelector('#champions-btn')
 const myTeamBtn = document.querySelector('#myteam-btn')
 const championView = document.querySelector('.champion-view')
 const teamView = document.querySelector('.team-view')
-const teamContainer = document.querySelector('.my-team-container')
 const reserveContainer = document.querySelector('.reserve-container')
 const moreMembers = document.querySelector('.more-members')
 const teamMaxSize = 3;

@@ -91,6 +91,10 @@ header {
     gap: 2em;
 }
 
+.team-members{
+    position: relative;
+}
+
 .list-item, .team-item, .reserve-item {
     background-color: var(--grayscale-medium);
     margin: 1em .5em;
@@ -100,6 +104,10 @@ header {
     height: 15.5em;
     text-align: center;
     cursor: pointer;
+}
+
+.team-item, .reserve-item {
+    height: 17.5em;
 }
 
 
@@ -117,7 +125,11 @@ header {
 
 .front-img, .team-front-img, .reserve-front-img {
    width: 125px;
-   /* height: auto; */
+   
+}
+
+.team-front-img, .reserve-front-img{
+   margin-top: -1.2em;
 }
 
 .pokemon-name, .team-pokemon-name, .team-pokemon-name {
@@ -139,7 +151,7 @@ header {
 
 }
 
-.add-to-team {
+.add-to-team, .give-nickname, .remove-from-team {
     padding: .2em;
     border-radius: .5em;
     background-color: var(--yellow);
@@ -149,12 +161,20 @@ header {
     box-shadow: 1px 1px 5px rgb(26, 26, 26);
 }
 
-.add-to-team:hover, .add-as-reserve:hover, #champions-btn:hover, #myteam-btn:hover {
+.remove-from-team {
+    margin-top: 0em;
+}
+
+.give-nickname {
+    margin-bottom: 0.2em;
+}
+
+.add-to-team:hover, #champions-btn:hover, #myteam-btn:hover, .give-nickname:hover, .remove-from-team:hover {
     background-color: #cea10c;
      transition: all ease-in .3s;
 }
 
-    #error-message {
+#error-message {
     color: var(--yellow);
     font-size: 1.5em;
     text-align: center;
@@ -173,7 +193,6 @@ header {
     border-radius: .5em;
     align-items: center;
     position: fixed;
-
 }
 
 .div-nickname > label {
@@ -202,9 +221,11 @@ header {
 
 /* ------ MY TEAM VIEW -------- */
 .team-view {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     display: none;
+    align-items: center;
+    justify-content: center;
     
 }
 .my-team-top, .reserves-top {
@@ -231,15 +252,19 @@ header {
 }
 
 .my-team-container, .reserve-container {
-    background-color: var(--grayscale-dark);
+    background-color: #1a2226;
     height: fit-content;
     margin: 2em 3em;
+    padding: 3em !important;
     border-radius: 0 .5em 0.5em 0.5em;
-    padding: 1em;
-    border: 2px solid rgb(55,97,168,0.7);    
+    padding: .5em;
+    border: 2px solid rgb(55,97,168,0.7); 
+    width: fit-content;   
 }
 
-
+.my-team-container {
+    position: relative;
+}
 
 .reverse {
     border-radius: 0.5em 0 .5em .5em;

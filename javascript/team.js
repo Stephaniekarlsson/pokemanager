@@ -17,6 +17,10 @@ function displayMyTeam() {
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="team-pokemon-name">${ellipsify(pokemon.name)}</p>
             </div>
+            <div class="add-btns">
+                <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>
+                <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
+            </div>
         `;
         teamMembers.appendChild(teamItem);
     });
@@ -34,7 +38,10 @@ function displayReserves() {
             <div class="team-img-wrap">
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="team-pokemon-name">${ellipsify(pokemon.name)}</p>
-    
+            </div>
+            <div class="add-btns">
+                <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>
+                <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
             </div>
         `;
         reserveContainer.appendChild(reserveItem);

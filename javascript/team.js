@@ -4,6 +4,7 @@ const reserveContainer = document.querySelector('.reserve-container')
 let myTeamList = [];
 let reserveList =[];
 
+
 function displayMyTeam() {
     teamMembers.innerHTML = ""; 
     myTeamList.forEach(pokemon => {
@@ -22,7 +23,12 @@ function displayMyTeam() {
                 <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
             </div>
         `;
+
+        const giveNicknameBtn = teamItem.querySelector('.give-nickname');
         teamMembers.appendChild(teamItem);
+        giveNicknameBtn.addEventListener('click', () => {
+            console.log('smeknamnsknapp fungerar' + pokemon.name);
+        })
     });
 }
 

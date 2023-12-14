@@ -52,3 +52,9 @@ export { ellipsify, displaySearchedPokemons }
 <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>
 <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
 </div> */}
+
+// const giveNickname = teamItem.querySelector('.give-nickname');
+//         giveNickname.addEventListener('click', () => {
+//             console.log('jag fungerar smeknamn' + pokemon.name);
+//             createNickname()
+//         });

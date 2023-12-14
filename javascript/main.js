@@ -1,6 +1,6 @@
 import { ellipsify, displaySearchedPokemons } from "./helpers.js";
 import { getPokemons } from "./pokemons.actions.js";
-import { displayMyTeam, displayReserves, myTeamList, reserveList } from "./team.js";
+import { displayMyTeam, displayReserves, myTeamList, reserveList, memberAlert } from "./team.js";
 const pokemonList = document.querySelector('.pokemon-list');
 const searchInput = document.querySelector('#search-input');
 const url = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
@@ -9,7 +9,6 @@ const myTeamBtn = document.querySelector('#myteam-btn')
 const championView = document.querySelector('.champion-view')
 const teamView = document.querySelector('.team-view')
 const reserveContainer = document.querySelector('.reserve-container')
-const moreMembers = document.querySelector('.more-members')
 const teamMaxSize = 3;
 let teamListCounter = 0
 
@@ -34,29 +33,6 @@ function addPokemonToTeam( id, name, sprite) {
         addPokemonToReserve(id, name, sprite)
     }
 }
-
-
-function memberAlert(){
-
-    if (teamListCounter === 0){
-        moreMembers.innerText = 'You need three champions for your team'
-        console.log('test ');
-    } else if (teamListCounter === 1) {
-        moreMembers.innerText = 'You need two more champions for your team'
-        console.log('test 1');
-    } else if (teamListCounter === 2) {
-        moreMembers.innerText = 'You need one more champions for your team'
-        console.log('test 2');
-
-    } else if (teamListCounter === 3) {
-        moreMembers.innerText = ''
-        console.log('test 3');
-
-    }
-}
-
-
-
 
 async function createAllPokemonCards() {
     pokemonList.innerHTML = "";
@@ -116,16 +92,16 @@ searchInput.addEventListener('input', () => {
 })
 
 myTeamBtn.addEventListener('click', () => {
-    teamView.style.display = 'block';
+    teamView.classList.add('team-visible')
     championView.style.display = 'none';
 });
 
 championsBtn.addEventListener('click', () => {
     championView.style.display = 'block';
-    teamView.style.display = 'none';
+    teamView.classList.remove('team-visible')
 });
 
 
 
-export {pokemonList} 
+export {pokemonList, teamListCounter} 
 

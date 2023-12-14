@@ -99,6 +99,7 @@ header {
     background-color: var(--grayscale-medium);
     margin: 1em .5em;
     border-radius: .5em;
+    border: 1px solid var(--yellow);
     box-shadow: 0px 1px 10px var(--yellow);
     width: 12em;
     height: 15.5em;
@@ -107,7 +108,7 @@ header {
 }
 
 .team-item, .reserve-item {
-    height: 17.5em;
+    height: 18em;
 }
 
 
@@ -193,6 +194,8 @@ header {
     border-radius: .5em;
     align-items: center;
     position: fixed;
+    top: 50%;
+    /* left: 50%; */
 }
 
 .div-nickname > label {
@@ -221,13 +224,17 @@ header {
 
 /* ------ MY TEAM VIEW -------- */
 .team-view {
+    display: none;
+}
+
+.team-visible {
     display: flex !important;
     flex-direction: column;
     display: none;
     align-items: center;
     justify-content: center;
-    
 }
+
 .my-team-top, .reserves-top {
     color: var(--blue);
     background-color: var(--yellow);
@@ -259,11 +266,14 @@ header {
     border-radius: 0 .5em 0.5em 0.5em;
     padding: .5em;
     border: 2px solid rgb(55,97,168,0.7); 
-    width: fit-content;   
+    box-shadow: 1px 1px 10px var(--blue);
+    /* width: fit-content;  */
+    min-width: 20em;  
 }
 
 .my-team-container {
     position: relative;
+
 }
 
 .reverse {
@@ -274,7 +284,16 @@ header {
     color: var(--yellow);
     font-size: 1em;
     text-align: center;
-    margin: 3em 0em;
+    margin: 3em 0em 0em 0em;
     padding: .5em;
-    
+}
+
+.pokemon-nickname {
+    margin-top: -1em;
+    font-size: 1.2em;
+    color: var(--yellow);
+}
+
+.invisible-member-message {
+    display: none;
 }

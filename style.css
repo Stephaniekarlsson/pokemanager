@@ -15,6 +15,7 @@
     --grayscale-medium: #4e5355;
     --grayscale-dark: #444c50;
     --grayscale-light: #acacac;
+    --grey: #303536;
 }
 
 body {
@@ -82,26 +83,27 @@ header {
     margin: 0 1em;
 
 }
-.pokemon-list {
+.pokemon-list, .reserve-container, .team-members {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 2em;
 }
 
-.list-item {
+.list-item, .team-item, .reserve-item {
     background-color: var(--grayscale-medium);
     margin: 1em .5em;
     border-radius: .5em;
     box-shadow: 0px 1px 10px var(--yellow);
-    background-color: #4e5355;
     width: 12em;
     height: 15.5em;
     text-align: center;
     cursor: pointer;
 }
 
-.number-wrap {
+
+.number-wrap, .team-number-wrap, .reserve-number-wrap {
     min-height: 16px;
     text-align: left;
     padding: 0 8px;
@@ -112,23 +114,23 @@ header {
     width: fit-content;
 }
 
-.front-img {
-   width: 150px;
-   height: auto;
+
+.front-img, .team-front-img, .reserve-front-img {
+   width: 125px;
+   /* height: auto; */
 }
 
-.pokemon-name {
+.pokemon-name, .team-pokemon-name, .team-pokemon-name {
     color: var(--yellow);
-    background-color: var(--grayscale-dark);
     padding: 1.6em 0 0 0;
-    margin-top: -2.4em;
+    margin-top: -2.2em;
     border-radius: .5em .5em 0 0;
     font-size: 1.5em;
+    text-overflow: ellipsis;
 }
 
 .add-btns {
     margin-top: -1.2em;
-    background-color: var(--grayscale-dark);
     padding: .3em 0 .6em 0;
     border-radius: 0 0 .5em .5em;
     display: flex;
@@ -141,10 +143,10 @@ header {
     padding: .2em;
     border-radius: .5em;
     background-color: var(--yellow);
-     color: var(--dark);
-     margin: 0 1em;
-     border: none;
-     box-shadow: 1px 1px 5px rgb(26, 26, 26);
+    color: var(--dark);
+    margin: .6em 1em;
+    border: none;
+    box-shadow: 1px 1px 5px rgb(26, 26, 26);
 }
 
 .add-to-team:hover, .add-as-reserve:hover, #champions-btn:hover, #myteam-btn:hover {
@@ -159,6 +161,43 @@ header {
     padding: 1em;
     width: 10em;
     margin: 0 auto;
+}
+
+.div-nickname{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--grey);
+    box-shadow: 0px 1px 10px var(--yellow);
+    padding: 2em;
+    height: fit-content;
+    border-radius: .5em;
+    align-items: center;
+    position: fixed;
+
+}
+
+.div-nickname > label {
+    color: var(--yellow);
+    font-size: 1.5em;
+}
+
+.div-nickname > input {
+    margin: .2em;
+    padding: 0.1em .5em;
+    border-radius: .5em;
+    border: 2px solid var(--dark);
+    box-shadow: 2px 0px 2px black inset;
+    background-color: var(--dark);
+    color: var(--yellow);
+}
+
+.div-nickname > button {
+    width: fit-content;
+    padding: .2em 2em;
+    border-radius: .5em;
+    background-color: var(--dark);
+    color: var(--yellow);
+    margin: .2em;
 }
 
 /* ------ MY TEAM VIEW -------- */
@@ -191,15 +230,26 @@ header {
 
 }
 
-.my-team-container {
+.my-team-container, .reserve-container {
     background-color: var(--grayscale-dark);
-    height: 7em;
+    height: fit-content;
     margin: 2em 3em;
     border-radius: 0 .5em 0.5em 0.5em;
+    padding: 1em;
+    border: 2px solid rgb(55,97,168,0.7);    
 }
+
+
 
 .reverse {
     border-radius: 0.5em 0 .5em .5em;
 }
 
-
+.more-members {
+    color: var(--yellow);
+    font-size: 1em;
+    text-align: center;
+    margin: 3em 0em;
+    padding: .5em;
+    
+}

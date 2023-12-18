@@ -1,5 +1,4 @@
 import { ellipsify } from "./helpers.js";
-import { teamListCounter } from "./main.js";
 const teamMembers = document.querySelector('.team-members')
 const reserveContainer = document.querySelector('.reserve-container')
 const moreMembers = document.querySelector('.more-members')
@@ -9,24 +8,23 @@ let reserveList =[];
 
 function memberAlert(){
 
-    if (teamListCounter === 1) {
+    if (myTeamList.length === 1) {
         moreMembers.innerText = 'You need two more champions for your team'
         console.log('test 1');
-    } else if (teamListCounter === 2) {
+    } else if (myTeamList.length === 2) {
         moreMembers.innerText = 'You need one more champions for your team'
         console.log('test 2');
 
-    } else if (teamListCounter === 3) {
+    } else if (myTeamList.length === 3) {
         moreMembers.innerText = ''
         console.log('test 3');
-
     }
 }
 
 
 let selectedPokemon; 
 
-function createNickname(teamItem, pokemonNickname) {
+function createNickname(teamItem, pokemonNickname, pokemon) {
     const divNickname = document.createElement('div');
     divNickname.className = 'div-nickname';
     divNickname.innerHTML = `
@@ -43,26 +41,36 @@ function createNickname(teamItem, pokemonNickname) {
         let inputNicknameValue = inputNickname.value;
         pokemonNickname.textContent = inputNicknameValue;
         divNickname.remove();
+
+        if (pokemon) {
+            pokemon.nickname = inputNicknameValue;
+        }
+
         inputNicknameValue = '';
-        selectedPokemon = null; 
+        selectedPokemon = null;
     });
 }
 
 
-function removePokemon(id, name) {
-    const index = myTeamList.findIndex(pokemon => pokemon.id === id && pokemon.name === name);
+function removePokemon(id, name, nickname) {
+
+    const index = myTeamList.findIndex(pokemon => {
+        console.log('Checking:', pokemon.id, pokemon.name, pokemon.nickname);
+        return pokemon.id === id && pokemon.name === name && pokemon.nickname === nickname;
+    });
+    
     if (index !== -1) {
         myTeamList.splice(index, 1);
         console.log('Removed from team:', myTeamList);
-        // teamListCounter--;
-        console.log('teamlist =', teamListCounter);
         displayMyTeam();
         memberAlert();
+    } else {
+        console.log('Pokemon not found in team.');
     }
 }
 
-function removePokemonReserve(id, name) {
-    const index = reserveList.findIndex(pokemon => pokemon.id === id && pokemon.name === name);
+function removePokemonReserve(id, name, nickname) {
+    const index = reserveList.findIndex(pokemon => pokemon.id === id && pokemon.name === name && pokemon.nickname === nickname);
     if (index !== -1) {
         reserveList.splice(index, 1);
         console.log('Removed from team:', reserveList);
@@ -85,7 +93,7 @@ function displayMyTeam() {
             <div class="team-img-wrap">
                 <p class="team-pokemon-name">${ellipsify(pokemon.name)}</p>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
-                <p class="pokemon-nickname"></p>
+                <p class="pokemon-nickname">${pokemon.nickname}</p>
             </div>
             <div class="add-btns">
                 <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>
@@ -105,7 +113,7 @@ function displayMyTeam() {
         const removeBtn = teamItem.querySelector('.remove-from-team');
         removeBtn.addEventListener('click', () => {
         console.log('Remove button clicked for ' + pokemon.name);
-        removePokemon(pokemon.id, pokemon.name);
+        removePokemon(pokemon.id, pokemon.name, pokemon.nickname);
         });
     });
 }
@@ -122,7 +130,7 @@ function displayReserves() {
             <div class="team-img-wrap">
                 <p class="team-pokemon-name">${ellipsify(pokemon.name)}</p>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
-                <p class="pokemon-nickname"></p>
+                <p class="pokemon-nickname">${pokemon.nickname}</p>
             </div>
             <div class="add-btns">
                 <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>
@@ -141,7 +149,7 @@ function displayReserves() {
         const removeBtn = reserveItem.querySelector('.remove-from-team');
         removeBtn.addEventListener('click', () => {
         console.log('Remove button clicked for ' + pokemon.name);
-        removePokemonReserve(pokemon.id, pokemon.name);
+        removePokemonReserve(pokemon.id, pokemon.name, pokemon.nickname);
         });
         
     });

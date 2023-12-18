@@ -10,28 +10,29 @@ const championView = document.querySelector('.champion-view')
 const teamView = document.querySelector('.team-view')
 const teamMaxSize = 3;
 
-let teamListCounter = 0
+
+// let teamListCounter = 0
 let pokemons = [];
 
 
 function addPokemonToReserve( id, name, sprite) {
-        reserveList.push({ id, name, sprite });
+        const newPokemon = { id, name, sprite, nickname: "" };
+        reserveList.push(newPokemon);
         console.log('Added as reserve:', reserveList);
         displayReserves(id, name, sprite)
 }
 
-function addPokemonToTeam( id, name, sprite) {
+function addPokemonToTeam(id, name, sprite) {
     if (myTeamList.length < teamMaxSize) {
-        myTeamList.push({ id, name, sprite});
+        const newPokemon = { id, name, sprite, nickname: "" };
+        myTeamList.push(newPokemon);
         console.log('Added to team:', myTeamList);
-        teamListCounter++
-        console.log('teamlist =',teamListCounter);
-        displayMyTeam(id, name, sprite)
-        memberAlert()
+        displayMyTeam();
+        memberAlert();
     } else {
-        addPokemonToReserve(id, name, sprite)
+        addPokemonToReserve(id, name, sprite);
     }
-}
+} 
 
 
 async function createAllPokemonCards() {
@@ -48,6 +49,7 @@ async function createAllPokemonCards() {
                 id: pokemonData.id,
                 name: pokemonData['name'][0].toUpperCase() + pokemonData['name'].slice(1),
                 sprite: pokemonData.sprites?.front_default ?? "./bilder/no-sprite.png",
+                nickname: '',
             }
            
             listItem.className = "list-item";
@@ -100,5 +102,5 @@ championsBtn.addEventListener('click', () => {
 
 
 
-export {pokemonList, teamListCounter} 
+export {pokemonList} 
 

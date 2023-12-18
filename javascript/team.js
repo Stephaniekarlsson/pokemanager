@@ -54,6 +54,8 @@ function removePokemon(id, name) {
     if (index !== -1) {
         myTeamList.splice(index, 1);
         console.log('Removed from team:', myTeamList);
+        // teamListCounter--;
+        console.log('teamlist =', teamListCounter);
         displayMyTeam();
         memberAlert();
     }
@@ -63,7 +65,7 @@ function removePokemonReserve(id, name) {
     const index = reserveList.findIndex(pokemon => pokemon.id === id && pokemon.name === name);
     if (index !== -1) {
         reserveList.splice(index, 1);
-        console.log('Removed from reserves:', reserveList);
+        console.log('Removed from team:', reserveList);
         displayReserves();
         memberAlert();
     }

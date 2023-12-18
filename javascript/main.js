@@ -13,6 +13,7 @@ const teamMaxSize = 3;
 let teamListCounter = 0
 let pokemons = [];
 
+
 function addPokemonToReserve( id, name, sprite) {
         reserveList.push({ id, name, sprite });
         console.log('Added as reserve:', reserveList);
@@ -27,11 +28,11 @@ function addPokemonToTeam( id, name, sprite) {
         console.log('teamlist =',teamListCounter);
         displayMyTeam(id, name, sprite)
         memberAlert()
-
     } else {
         addPokemonToReserve(id, name, sprite)
     }
 }
+
 
 async function createAllPokemonCards() {
     pokemonList.innerHTML = "";
@@ -64,13 +65,11 @@ async function createAllPokemonCards() {
             `;
     
             pokemon.listItem = listItem;
-    
             const addToTeamBtn = listItem.querySelector('.add-to-team');
             addToTeamBtn.addEventListener('click', () => {
                 console.log('jag fungerar' + pokemonInfo.name);
                 addPokemonToTeam(pokemonInfo.id, pokemonInfo.name, pokemonInfo.sprite)
-            })
-    
+             });
             pokemonList.appendChild(listItem);
 
         });

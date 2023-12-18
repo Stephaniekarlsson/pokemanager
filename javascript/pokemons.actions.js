@@ -1,4 +1,5 @@
 const errorMessage = document.querySelector('#error-message');
+
 async function getPokemons(url) {
     try {
         const response = await fetch(url);
@@ -9,4 +10,5 @@ async function getPokemons(url) {
     }
 }
 
-export { getPokemons }
+
+export { getPokemons}

@@ -23,28 +23,53 @@ function memberAlert(){
     }
 }
 
-function createNickname(){
-    const teamItem = teamMembers.querySelector('.team-item');
-    const pokemonNickname = teamItem.querySelector('.pokemon-nickname')
+
+let selectedPokemon; 
+
+function createNickname(teamItem, pokemonNickname) {
     const divNickname = document.createElement('div');
     divNickname.className = 'div-nickname';
-        divNickname.innerHTML = `
+    divNickname.innerHTML = `
         <label for="input-nickname">Create a Nickname</label>
         <input type="text" id="input-nickname" placeholder="Create nickname">
         <button class="btn-nickname" type="submit">Save</button>
-        `;
-        teamMembers.append(divNickname)
+    `;
+    teamItem.appendChild(divNickname);
 
-        const saveNickname = divNickname.querySelector('.btn-nickname')
-        const inputNickname = divNickname.querySelector('#input-nickname')
-        
-        saveNickname.addEventListener('click', () => {
-            let inputNicknameValue = inputNickname.value
-            pokemonNickname.append(inputNicknameValue)
-            divNickname.remove()
-            inputNicknameValue = '';
-        })
+    const saveNickname = divNickname.querySelector('.btn-nickname');
+    const inputNickname = divNickname.querySelector('#input-nickname');
+
+    saveNickname.addEventListener('click', () => {
+        let inputNicknameValue = inputNickname.value;
+        pokemonNickname.textContent = inputNicknameValue;
+        divNickname.remove();
+        inputNicknameValue = '';
+        selectedPokemon = null; 
+    });
+}
+
+
+function removePokemon(id, name) {
+    const index = myTeamList.findIndex(pokemon => pokemon.id === id && pokemon.name === name);
+    if (index !== -1) {
+        myTeamList.splice(index, 1);
+        console.log('Removed from team:', myTeamList);
+        displayMyTeam();
+        memberAlert();
     }
+}
+
+function removePokemonReserve(id, name) {
+    const index = reserveList.findIndex(pokemon => pokemon.id === id && pokemon.name === name);
+    if (index !== -1) {
+        reserveList.splice(index, 1);
+        console.log('Removed from reserves:', reserveList);
+        displayReserves();
+        memberAlert();
+    }
+}
+
+
 
 function displayMyTeam() {
     teamMembers.innerHTML = ""; 
@@ -71,8 +96,15 @@ function displayMyTeam() {
         const giveNicknameBtn = teamItem.querySelector('.give-nickname');
         giveNicknameBtn.addEventListener('click', () => {
             console.log('smeknamnsknapp fungerar' + pokemon.name);
-            createNickname()
-        })
+            selectedPokemon = pokemon;
+            createNickname(teamItem, teamItem.querySelector('.pokemon-nickname'), selectedPokemon);
+        });
+
+        const removeBtn = teamItem.querySelector('.remove-from-team');
+        removeBtn.addEventListener('click', () => {
+        console.log('Remove button clicked for ' + pokemon.name);
+        removePokemon(pokemon.id, pokemon.name);
+        });
     });
 }
 
@@ -96,6 +128,20 @@ function displayReserves() {
             </div>
         `;
         reserveContainer.appendChild(reserveItem);
+
+        const giveNicknameBtn = reserveItem.querySelector('.give-nickname');
+        giveNicknameBtn.addEventListener('click', () => {
+            console.log('smeknamnsknapp fungerar' + pokemon.name);
+            selectedPokemon = pokemon;
+            createNickname(reserveItem, reserveItem.querySelector('.pokemon-nickname'), selectedPokemon);
+        });
+
+        const removeBtn = reserveItem.querySelector('.remove-from-team');
+        removeBtn.addEventListener('click', () => {
+        console.log('Remove button clicked for ' + pokemon.name);
+        removePokemonReserve(pokemon.id, pokemon.name);
+        });
+        
     });
 }
 

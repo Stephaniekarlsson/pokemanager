@@ -178,8 +178,7 @@ function displayMyTeam() {
             <div class="team-img-wrap">
                 <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
                 <div class="abilities-container">
-                    <p class="abilities">Abilities</P>
-                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">ⓘ</button>
+                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">Abilities ⓘ</button>
                 </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="pokemon-nickname">${pokemon.nickname}</p>
@@ -236,8 +235,7 @@ function displayReserves() {
             <div class="team-img-wrap">
                 <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
                 <div class="abilities-container">
-                    <p class="abilities">Abilities</P>
-                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">ⓘ</button>
+                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">Abilities ⓘ</button>
                 </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="pokemon-nickname">${pokemon.nickname}</p>

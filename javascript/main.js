@@ -55,12 +55,8 @@ async function createAllPokemonCards() {
             <div class="img-wrap">
                 <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.name}">${ellipsify(pokemonInfo.name)}</button>
                 <div class="abilities-container">
-                    <p class="abilities">Abilities</P>
-                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.abilities}">ⓘ</button>
+                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.abilities}">Abilities ⓘ</button>
                 </div>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
-  Tooltip on top
-</button>
                 <img class="front-img" src="${pokemonInfo.sprite}" alt="${pokemonInfo.name}">
                 <div class="add-btns">
                     <button class="add-to-team" data-id="${pokemonInfo.id}" data-name="${pokemonInfo.name}">Add to team</button>

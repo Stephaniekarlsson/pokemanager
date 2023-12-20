@@ -176,9 +176,10 @@ function displayMyTeam() {
         </div>
         <div class="pokemon-card">
             <div class="team-img-wrap">
-                <p class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</p>
+                <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
                 <div class="abilities-container">
-                    <p class="abilites" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">Abilites ⓘ</p>
+                    <p class="abilities">Abilities</P>
+                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">ⓘ</button>
                 </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="pokemon-nickname">${pokemon.nickname}</p>
@@ -233,9 +234,10 @@ function displayReserves() {
         </div>
         <div class="pokemon-card">
             <div class="team-img-wrap">
-                <p class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</p>
+                <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
                 <div class="abilities-container">
-                    <p class="abilites" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">Abilites ⓘ</p>
+                    <p class="abilities">Abilities</P>
+                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">ⓘ</button>
                 </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="pokemon-nickname">${pokemon.nickname}</p>

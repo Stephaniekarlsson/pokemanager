@@ -33,6 +33,7 @@ header {
     top: 0;
     background-image: url(./bilder/background.png);
     width: 100%;
+    z-index: 99;
 }
 
 #champions-btn, #myteam-btn {
@@ -55,7 +56,7 @@ header {
 }
 
 .search-wrapper {
-    margin: 2em auto;
+    margin: 2em auto .5em auto;
     padding: 0 0 0 .5em ;
     background-color: var(--dark);
     border: 1px solid var(--blue);
@@ -128,7 +129,7 @@ header {
 }
 
 .pokemon-card {
-    height: 19.2em;
+    height: 18.6em;
     margin-top: 0;
 }
 
@@ -158,6 +159,8 @@ header {
     font-size: 1.5em;
     text-overflow: ellipsis;
     cursor: pointer;
+    background: none;
+    border: none
 }
 
 .team-pokemon-name {
@@ -167,16 +170,26 @@ header {
 
 .abilities-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    gap: .2em;
 }
 
-.abilites, .pokemon-abilities {
+.abilities, .abilities-info {
     color: var(--yellow);
+    padding: 0;
 }
 
-.abilites {
-    margin: 0 0 0.5em 0;
+.abilities-info {
     cursor: pointer;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 700;
+}
+
+.abilities-info:active, .abilities-info:hover {
+    transform: translateY(1px);
 }
 
 .add-btns {
@@ -283,10 +296,14 @@ header {
     font-weight: 700;
 }
 
+.my-team-top{
+    margin-top: 5em;
+}
+
 .right {
     display: flex;
     justify-content: end;
-    margin: 0 3em -3em 0;
+    margin: 0em 3em -3em 0;
 }
 
 .left {

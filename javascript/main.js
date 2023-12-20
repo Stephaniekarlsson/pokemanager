@@ -8,6 +8,7 @@ const championsBtn = document.querySelector('#champions-btn')
 const myTeamBtn = document.querySelector('#myteam-btn')
 const championView = document.querySelector('.champion-view')
 const teamView = document.querySelector('.team-view')
+const searchWrapper = document.querySelector('.search-wrapper')
 const teamMaxSize = 3;
 
 let pokemons = [];
@@ -121,11 +122,14 @@ searchInput.addEventListener('input', () => {
 myTeamBtn.addEventListener('click', () => {
     teamView.classList.add('team-visible')
     championView.style.display = 'none';
+    searchWrapper.style.display = 'none'
 });
 
 championsBtn.addEventListener('click', () => {
     championView.style.display = 'block';
     teamView.classList.remove('team-visible')
+    searchWrapper.style.display = 'block'
+
 });
 
 

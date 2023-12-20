@@ -327,7 +327,7 @@ header {
 }
 
 .my-team-top{
-    margin-top: 5em;
+    /* margin-top: 5em; */
 }
 
 .right {
@@ -337,7 +337,7 @@ header {
 }
 
 .left {
-    margin: 10em 3em -2.3em 3em;
+    margin: 2em 3em -2.3em 3em;
     padding: .4em 0;
 
 }
@@ -367,7 +367,7 @@ header {
     color: var(--yellow);
     font-size: 1em;
     text-align: center;
-    margin: 3em 0em 0em 0em;
+    margin: 15em 0em 0em 0em;
     padding: .5em;
 }
 

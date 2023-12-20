@@ -1,4 +1,4 @@
-import { ellipsify, displaySearchedPokemons, prettifyAbilities } from "./helpers.js";
+import { ellipsify, displaySearchedPokemons, prettifyAbilities, prettifyType } from "./helpers.js";
 import { getPokemons } from "./pokemons.actions.js";
 import { displayMyTeam, displayReserves, myTeamList, reserveList, memberAlert } from "./team.js";
 const pokemonList = document.querySelector('.pokemon-list');
@@ -10,28 +10,22 @@ const championView = document.querySelector('.champion-view')
 const teamView = document.querySelector('.team-view')
 const teamMaxSize = 3;
 
-let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-let tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
-
 let pokemons = [];
 
-
-function addPokemonToReserve( id, name, sprite, abilities) {
-        const newPokemon = { id, name, sprite, nickname: "", abilities };
+function addPokemonToReserve( id, name, sprite, abilities, type) {
+        const newPokemon = { id, name, sprite, nickname: "", abilities, type };
         reserveList.push(newPokemon);
-        displayReserves(id, name, sprite, abilities)
+        displayReserves(id, name, sprite, abilities, type)
 }
 
-function addPokemonToTeam(id, name, sprite, abilities) {
+function addPokemonToTeam(id, name, sprite, abilities, type) {
     if (myTeamList.length < teamMaxSize) {
-        const newPokemon = { id, name, sprite, nickname: "", abilities };
+        const newPokemon = { id, name, sprite, nickname: "", abilities, type };
         myTeamList.push(newPokemon);
         displayMyTeam();
         memberAlert();
     } else {
-        addPokemonToReserve(id, name, sprite, abilities);
+        addPokemonToReserve(id, name, sprite, abilities, type);
     }
 } 
 
@@ -50,33 +44,66 @@ async function createAllPokemonCards() {
                 name: pokemonData['name'][0].toUpperCase() + pokemonData['name'].slice(1),
                 sprite: pokemonData.sprites?.front_default ?? "./bilder/no-sprite.png",
                 nickname: '',
-                abilities: prettifyAbilities(pokemonData.abilities)
+                abilities: prettifyAbilities(pokemonData.abilities),
+                type: pokemonData.types.map((type) => type.type.name.toUpperCase()[0] + type.type.name.slice(1))
             }
           
-           
             listItem.className = "list-item";
             listItem.innerHTML = `
-          
-            <div class="img-wrap">
-                <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.name}">${ellipsify(pokemonInfo.name)}</button>
-                <div class="abilities-container">
-                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.abilities}">Abilities ⓘ</button>
-                </div>
-                <img class="front-img" src="${pokemonInfo.sprite}" alt="${pokemonInfo.name}">
-                <div class="add-btns">
-                    <button class="add-to-team" data-id="${pokemonInfo.id}" data-name="${pokemonInfo.name}">Add to team</button>
+            <div class="pokemon-card">
+                <div class="img-wrap">
+                    <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.name}">${ellipsify(pokemonInfo.name)}</button>
+                    <div class="abilities-container">
+                        <p class="abilities">Abilities</p>
+                        <p class="abilities-info">${pokemonInfo.abilities}</button>
+                    </div>
+                    <img class="front-img" src="${pokemonInfo.sprite}" alt="${pokemonInfo.name}">
+                    <p class="pokemon-type">${pokemonInfo.type[0]}</p>
+                    <p class="pokemon-type invisible">${pokemonInfo.type[1]}</p>
                 </div>
             </div>
+            <div class="add-btns">
+                <button class="add-to-team" data-id="${pokemonInfo.id}" data-name="${pokemonInfo.name}">Add to team</button>
+           </div>
     
             `;
-    
+            
+            const types = pokemonInfo.type
+
+            const pokemonType1 = listItem.querySelector('.pokemon-type');
+            const pokemonType2 = listItem.querySelector('.pokemon-type.invisible');
+            
+            types.forEach((type, index) => {
+                const lowercaseType = type.toLowerCase();
+                const targetElement = index === 0 ? pokemonType1 : pokemonType2;
+                
+                targetElement.classList.add(`${lowercaseType}-type`);
+                
+                if (index === 1) {
+                    targetElement.classList.remove('invisible');
+                }
+            });
+            
+            
+
             pokemon.listItem = listItem;
+            
             const addToTeamBtn = listItem.querySelector('.add-to-team');
             addToTeamBtn.addEventListener('click', () => {
-                addPokemonToTeam(pokemonInfo.id, pokemonInfo.name, pokemonInfo.sprite, pokemonInfo.abilities)
+                const originalText = addToTeamBtn.innerText;
+
+                addToTeamBtn.innerText = 'Added!';
+    
+                setTimeout(() => {
+                    addToTeamBtn.innerText = originalText;
+                }, 1500);
+
+                addPokemonToTeam(pokemonInfo.id, pokemonInfo.name, pokemonInfo.sprite, pokemonInfo.abilities, pokemonInfo.type)
+
              });
             pokemonList.appendChild(listItem);
         });
+
     } catch (error) {
         console.error('Något gick fel! Testa igen om en stund', error);
     }

@@ -174,22 +174,41 @@ function displayMyTeam() {
             <p class="team-placement">${index + 1}</p>
             <p class="move-down">+</p>
         </div>
-        <div class="pokemon-card">
+        <div class="pokemon-card team">
             <div class="team-img-wrap">
                 <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
                 <div class="abilities-container">
-                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">Abilities ⓘ</button>
+                    <p class="abilities">Abilities</p>
+                    <p class="abilities-info">${pokemon.abilities}</button>
                 </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="pokemon-nickname">${pokemon.nickname}</p>
+                <p class="pokemon-type">${pokemon.type && pokemon.type[0]}</p>
+                <p class="pokemon-type invisible">${pokemon.type && pokemon.type[1]}</p>
             </div>
-            <div class="add-btns">
-                <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>                    <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
-            </div>
+        </div>
+        <div class="add-btns">
+            <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>                    <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
         </div>
         `;
 
         teamMembers.appendChild(teamItem);
+
+        const types = pokemon.type
+
+        const pokemonType1 = teamItem.querySelector('.pokemon-type');
+        const pokemonType2 = teamItem.querySelector('.pokemon-type.invisible');
+        
+        types.forEach((type, index) => {
+            const lowercaseType = type.toLowerCase();
+            const targetElement = index === 0 ? pokemonType1 : pokemonType2;
+            
+            targetElement.classList.add(`${lowercaseType}-type`);
+            
+            if (index === 1) {
+                targetElement.classList.remove('invisible');
+            }
+        });
 
         const moveUpBtn = teamItem.querySelector('.move-up');
         if(index === 0){
@@ -231,22 +250,41 @@ function displayReserves() {
             <p class="team-placement">${index + 1}</p>
             <p class="move-down">+</p>
         </div>
-        <div class="pokemon-card">
+        <div class="pokemon-card team">
             <div class="team-img-wrap">
                 <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
                 <div class="abilities-container">
-                    <button class="abilities-info" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">Abilities ⓘ</button>
+                    <p class="abilities">Abilities</p>
+                    <p class="abilities-info">${pokemon.abilities}</button>
                 </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="pokemon-nickname">${pokemon.nickname}</p>
-            </div>
-            <div class="add-btns">
-                <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>
-                <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
+                <p class="pokemon-type">${pokemon.type && pokemon.type[0]}</p>
+                <p class="pokemon-type invisible">${pokemon.type && pokemon.type[1]}</p>
             </div>
         </div>
+        <div class="add-btns">
+            <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>                    <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
+        </div>
         `;
+
         reserveContainer.appendChild(reserveItem);
+
+        const types = pokemon.type
+
+        const pokemonType1 = reserveItem.querySelector('.pokemon-type');
+        const pokemonType2 = reserveItem.querySelector('.pokemon-type.invisible');
+        
+        types.forEach((type, index) => {
+            const lowercaseType = type.toLowerCase();
+            const targetElement = index === 0 ? pokemonType1 : pokemonType2;
+            
+            targetElement.classList.add(`${lowercaseType}-type`);
+            
+            if (index === 1) {
+                targetElement.classList.remove('invisible');
+            }
+        });
 
         const moveUpBtn = reserveItem.querySelector('.move-up');
         if(index === 0){

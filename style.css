@@ -116,7 +116,7 @@ header {
     height: 19.2em;
 } */
 
-.list-item, .pokemon-card {
+.pokemon-card {
     background-color: var(--grayscale-medium);
     margin: 1em .5em;
     border-radius: .5em;
@@ -125,10 +125,16 @@ header {
     width: 12em;
     height: 15.5em;
     text-align: center;
-    /* cursor: pointer; */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.pokemon-card {
+.pokemon-card .team {
     height: 18.6em;
     margin-top: 0;
 }
@@ -152,13 +158,13 @@ header {
 }
 
 .front-img {
-    margin-top: -.6em;
+    margin-top: .3em;
 }
 
 .pokemon-name, .team-pokemon-name {
     color: var(--yellow);
     padding: 1.6em 0 0 0;
-    margin-top: -1.2em;
+    margin-top: -1em;
     border-radius: .5em .5em 0 0;
     font-size: 1.5em;
     text-overflow: ellipsis;
@@ -174,27 +180,46 @@ header {
 
 .abilities-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: start;
+    align-items: center;
     gap: .2em;
-    margin: .7em;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(101%);
+    transition: 0.3s ease-in;
+    overflow: auto;
+    height: 78%;
+    background-color: var(--yellow);
+    border-radius: 0.7em 0.7em 0 0;
+}
+
+.pokemon-card:hover .abilities-container{
+    transform: translateY(0);
 }
 
 .abilities, .abilities-info {
-    color: var(--yellow);
-    padding: 0;
+    color: var(--dark);
+    padding: 0.2em;
+    font-size: 1.2em;
 }
 
 .abilities-info {
-    cursor: pointer;
     border: none;
     background: none;
-    cursor: pointer;
     font-size: 700;
 }
 
-.abilities-info:active, .abilities-info:hover {
-    transform: translateY(1px);
+.pokemon-type {
+    color: #fffaec;
+    font-size: 1em;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0em .8em;
+    border-radius: .5em;
+    margin-bottom: .2em ;
 }
 
 .add-btns {
@@ -347,7 +372,8 @@ header {
 }
 
 .pokemon-nickname {
-    margin-top: -1em;
+    margin-top: -0.8em;
+    margin-bottom: 0.3em;
     font-size: 1.2em;
     color: var(--yellow);
 }
@@ -380,3 +406,77 @@ header {
 .invisible {
     visibility: hidden;
 }
+
+/* ---------pokemon typer-------- */
+.normal-type {
+    background-color: #a8a878;
+}
+
+.fire-type {
+    background-color: #F08030;
+}
+
+.water-type {
+    background-color: #6890F0;
+}
+
+.grass-type {
+    background-color: #78c850;
+}
+
+.electric-type {
+    background-color: #f8d030;
+}
+
+.ice-type {
+    background-color: #98d8d8;
+}
+
+.fighting-type {
+    background-color: #c03028;
+}
+
+.poison-type {
+    background-color: #a040a0;
+}
+
+.ground-type {
+    background-color: #e0c068;
+}
+
+.flying-type {
+    background-color: #a890f0;
+}
+
+.psychic-type {
+    background-color: #f85888;
+}
+
+.bug-type {
+    background-color: #a8b820;
+}
+
+.rock-type {
+    background-color: #b8a038;
+}
+
+.ghost-type {
+    background-color: #705898;
+}
+
+.dragon-type {
+    background-color: #7038f8;
+}
+
+.dark-type {
+    background-color: #705848;
+}
+
+.steel-type {
+    background-color: #b8b8d0;
+}
+
+.fairy-type {
+    background-color: #ee99ac;
+}
+

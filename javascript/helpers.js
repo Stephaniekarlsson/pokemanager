@@ -25,12 +25,28 @@ function prettifyAbilities(abilities) {
         prettified += `${ability.ability.name.toUpperCase()[0] + ability.ability.name.slice(1)}`;
 
         if (index < abilities.length -1) {
-            prettified += ', ';
+            prettified += ',' + '<br>';
         }
     });
 
     return prettified;
 }
 
+function prettifyType(types) {
+    let prettified = '';
 
-export { ellipsify, displaySearchedPokemons, prettifyAbilities }
+    types.forEach((type, index) => {
+        prettified += `${type.type.name.toUpperCase()[0] + type.type.name.slice(1)}`;
+
+        // if (index < types.length -1) {
+        //     prettified += '<br>';
+        // }
+    });
+
+    return prettified;
+}
+
+
+
+
+export { ellipsify, displaySearchedPokemons, prettifyAbilities, prettifyType }

@@ -18,4 +18,19 @@ function displaySearchedPokemons(searchedPokemons) {
     });
 }
 
-export { ellipsify, displaySearchedPokemons }
+function prettifyAbilities(abilities) {
+    let prettified = '';
+
+    abilities.forEach((ability, index) => {
+        prettified += `${ability.ability.name.toUpperCase()[0] + ability.ability.name.slice(1)}`;
+
+        if (index < abilities.length -1) {
+            prettified += ', ';
+        }
+    });
+
+    return prettified;
+}
+
+
+export { ellipsify, displaySearchedPokemons, prettifyAbilities }

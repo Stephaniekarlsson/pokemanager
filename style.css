@@ -95,7 +95,7 @@ header {
     position: relative;
 }
 
-.list-item, .team-item, .reserve-item {
+/* .list-item, .team-item, .reserve-item {
     background-color: var(--grayscale-medium);
     margin: 1em .5em;
     border-radius: .5em;
@@ -109,10 +109,27 @@ header {
 
 .team-item, .reserve-item {
     height: 19.2em;
+} */
+
+.list-item, .pokemon-card {
+    background-color: var(--grayscale-medium);
+    margin: 1em .5em;
+    border-radius: .5em;
+    border: 1px solid var(--yellow);
+    box-shadow: 0px 1px 10px var(--yellow);
+    width: 12em;
+    height: 15.5em;
+    text-align: center;
+    /* cursor: pointer; */
+}
+
+.pokemon-card {
+    height: 19.2em;
+    margin-top: 0;
 }
 
 
-.number-wrap, .team-number-wrap, .reserve-number-wrap {
+.number-wrap {
     min-height: 16px;
     text-align: left;
     padding: 0 8px;
@@ -126,20 +143,36 @@ header {
 
 .front-img, .team-front-img, .reserve-front-img {
    width: 125px;
-   
-}
-
-.team-front-img, .reserve-front-img{
    margin-top: -1.2em;
 }
 
-.pokemon-name, .team-pokemon-name, .team-pokemon-name {
+.pokemon-name, .team-pokemon-name {
     color: var(--yellow);
     padding: 1.6em 0 0 0;
-    margin-top: -2.2em;
+    margin-top: -1.2em;
     border-radius: .5em .5em 0 0;
     font-size: 1.5em;
     text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.team-pokemon-name {
+    padding: 0;
+    margin-bottom: 0em;
+}
+
+.abilities-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.abilites, .pokemon-abilities {
+    color: var(--yellow);
+}
+
+.abilites {
+    margin: 0 0 0.5em 0;
+    cursor: pointer;
 }
 
 .add-btns {
@@ -300,14 +333,24 @@ header {
 .placement-arrows {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     gap: .5em;
+    margin: 0;
+    padding: 0;
+    color: var(--yellow);
     font-size: 1.5em;
     font-weight: 700;
-    align-items: center;
-    margin-top: .2em;
-    text-shadow: 1px 1px 2px var(--yellow);
+    text-shadow: 2px 2px 3px var(--blue);
 }
 
 .team-placement{
     font-size: .8em;
+}
+
+.move-up, .move-down {
+    cursor: pointer;
+}
+
+.invisible {
+    visibility: hidden;
 }

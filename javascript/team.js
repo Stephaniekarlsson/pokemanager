@@ -161,9 +161,6 @@ function moveUpTeamMember(id, name, nickname) {
       displayReserves();
     }
   }
-
-
-
   
 
 function displayMyTeam() {
@@ -172,30 +169,40 @@ function displayMyTeam() {
         const teamItem = document.createElement('div');
         teamItem.className = 'team-item';
         teamItem.innerHTML = `
-            <div class="placement-arrows">
-                <p class="move-up">⇧</p>
-                <p class="team-placement">${index + 1}</p>
-                <p class="move-down">⇩</p>
-            </div>
+        <div class="placement-arrows">
+            <p class="move-up">-</p>
+            <p class="team-placement">${index + 1}</p>
+            <p class="move-down">+</p>
+        </div>
+        <div class="pokemon-card">
             <div class="team-img-wrap">
-                <p class="team-pokemon-name">${ellipsify(pokemon.name)}</p>
+                <p class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</p>
+                <div class="abilities-container">
+                    <p class="abilites" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">Abilites ⓘ</p>
+                </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="pokemon-nickname">${pokemon.nickname}</p>
             </div>
             <div class="add-btns">
-                <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>
-                <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
+                <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>                    <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
             </div>
+        </div>
         `;
 
         teamMembers.appendChild(teamItem);
 
         const moveUpBtn = teamItem.querySelector('.move-up');
+        if(index === 0){
+            moveUpBtn.classList.add('invisible')
+        } 
         moveUpBtn.addEventListener('click', () => {
           moveUpTeamMember(pokemon.id, pokemon.name, pokemon.nickname);
         });
       
         const moveDownBtn = teamItem.querySelector('.move-down');
+        if(index === myTeamList.length -1){
+            moveDownBtn.classList.add('invisible')
+        } 
         moveDownBtn.addEventListener('click', () => {
           moveDownTeamMember(pokemon.id, pokemon.name, pokemon.nickname);
         });
@@ -219,13 +226,17 @@ function displayReserves() {
         const reserveItem = document.createElement('div');
         reserveItem.className = 'team-item';
         reserveItem.innerHTML = `
-            <div class="placement-arrows">
-                <p class="move-up">⇧</p>
-                <p class="team-placement">${index + 1}</p>
-                <p class="move-down">⇩</p>
-            </div>
+        <div class="placement-arrows">
+            <p class="move-up">-</p>
+            <p class="team-placement">${index + 1}</p>
+            <p class="move-down">+</p>
+        </div>
+        <div class="pokemon-card">
             <div class="team-img-wrap">
-                <p class="team-pokemon-name">${ellipsify(pokemon.name)}</p>
+                <p class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</p>
+                <div class="abilities-container">
+                    <p class="abilites" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.abilities}">Abilites ⓘ</p>
+                </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
                 <p class="pokemon-nickname">${pokemon.nickname}</p>
             </div>
@@ -233,15 +244,22 @@ function displayReserves() {
                 <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>
                 <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
             </div>
+        </div>
         `;
         reserveContainer.appendChild(reserveItem);
 
         const moveUpBtn = reserveItem.querySelector('.move-up');
+        if(index === 0){
+            moveUpBtn.classList.add('invisible')
+        } 
         moveUpBtn.addEventListener('click', () => {
           moveUpReserve(pokemon.id, pokemon.name, pokemon.nickname);
         });
       
         const moveDownBtn = reserveItem.querySelector('.move-down');
+        if(index === reserveList.length -1){
+            moveDownBtn.classList.add('invisible')
+        } 
         moveDownBtn.addEventListener('click', () => {
           moveDownreserve(pokemon.id, pokemon.name, pokemon.nickname);
         });

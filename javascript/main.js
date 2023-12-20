@@ -1,4 +1,4 @@
-import { ellipsify, displaySearchedPokemons } from "./helpers.js";
+import { ellipsify, displaySearchedPokemons, prettifyAbilities } from "./helpers.js";
 import { getPokemons } from "./pokemons.actions.js";
 import { displayMyTeam, displayReserves, myTeamList, reserveList, memberAlert } from "./team.js";
 const pokemonList = document.querySelector('.pokemon-list');
@@ -13,20 +13,20 @@ const teamMaxSize = 3;
 let pokemons = [];
 
 
-function addPokemonToReserve( id, name, sprite) {
-        const newPokemon = { id, name, sprite, nickname: "" };
+function addPokemonToReserve( id, name, sprite, abilities) {
+        const newPokemon = { id, name, sprite, nickname: "", abilities };
         reserveList.push(newPokemon);
-        displayReserves(id, name, sprite)
+        displayReserves(id, name, sprite, abilities)
 }
 
-function addPokemonToTeam(id, name, sprite) {
+function addPokemonToTeam(id, name, sprite, abilities) {
     if (myTeamList.length < teamMaxSize) {
-        const newPokemon = { id, name, sprite, nickname: "" };
+        const newPokemon = { id, name, sprite, nickname: "", abilities };
         myTeamList.push(newPokemon);
         displayMyTeam();
         memberAlert();
     } else {
-        addPokemonToReserve(id, name, sprite);
+        addPokemonToReserve(id, name, sprite, abilities);
     }
 } 
 
@@ -45,27 +45,30 @@ async function createAllPokemonCards() {
                 name: pokemonData['name'][0].toUpperCase() + pokemonData['name'].slice(1),
                 sprite: pokemonData.sprites?.front_default ?? "./bilder/no-sprite.png",
                 nickname: '',
+                abilities: prettifyAbilities(pokemonData.abilities)
             }
+          
            
             listItem.className = "list-item";
             listItem.innerHTML = `
-                <div class="number-wrap">
-                    <p class="number-id">#${pokemonInfo.id}</p>
+          
+            <div class="img-wrap">
+                <p class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.name}">${ellipsify(pokemonInfo.name)}</p>
+                <div class="abilities-container">
+                    <p class="abilites" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.abilities}">Abilites ⓘ</p>
                 </div>
-                <div class="img-wrap">
-                    <img class="front-img" src="${pokemonInfo.sprite}" alt="${pokemonInfo.name}">
-                    <p class="pokemon-name">${ellipsify(pokemonInfo.name)}</p>
-                    <div class="add-btns">
-                        <button class="add-to-team" data-id="${pokemonInfo.id}" data-name="${pokemonInfo.name}">Add to team</button>
-                    </div>
+                <img class="front-img" src="${pokemonInfo.sprite}" alt="${pokemonInfo.name}">
+                <div class="add-btns">
+                    <button class="add-to-team" data-id="${pokemonInfo.id}" data-name="${pokemonInfo.name}">Add to team</button>
                 </div>
+            </div>
+    
             `;
     
             pokemon.listItem = listItem;
             const addToTeamBtn = listItem.querySelector('.add-to-team');
             addToTeamBtn.addEventListener('click', () => {
-                console.log('jag fungerar' + pokemonInfo.name);
-                addPokemonToTeam(pokemonInfo.id, pokemonInfo.name, pokemonInfo.sprite)
+                addPokemonToTeam(pokemonInfo.id, pokemonInfo.name, pokemonInfo.sprite, pokemonInfo.abilities)
              });
             pokemonList.appendChild(listItem);
         });

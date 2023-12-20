@@ -10,15 +10,12 @@ const championView = document.querySelector('.champion-view')
 const teamView = document.querySelector('.team-view')
 const teamMaxSize = 3;
 
-
-// let teamListCounter = 0
 let pokemons = [];
 
 
 function addPokemonToReserve( id, name, sprite) {
         const newPokemon = { id, name, sprite, nickname: "" };
         reserveList.push(newPokemon);
-        console.log('Added as reserve:', reserveList);
         displayReserves(id, name, sprite)
 }
 
@@ -26,7 +23,6 @@ function addPokemonToTeam(id, name, sprite) {
     if (myTeamList.length < teamMaxSize) {
         const newPokemon = { id, name, sprite, nickname: "" };
         myTeamList.push(newPokemon);
-        console.log('Added to team:', myTeamList);
         displayMyTeam();
         memberAlert();
     } else {
@@ -39,7 +35,6 @@ async function createAllPokemonCards() {
     pokemonList.innerHTML = "";
     
     try {
-        
         const pokemonData = await getPokemons(url);
         pokemons = pokemonData.results; 
         pokemons.map(async pokemon => {
@@ -73,9 +68,7 @@ async function createAllPokemonCards() {
                 addPokemonToTeam(pokemonInfo.id, pokemonInfo.name, pokemonInfo.sprite)
              });
             pokemonList.appendChild(listItem);
-
         });
-
     } catch (error) {
         console.error('Något gick fel! Testa igen om en stund', error);
     }

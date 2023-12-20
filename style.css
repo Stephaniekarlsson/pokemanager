@@ -290,7 +290,7 @@ header {
 }
 
 .left {
-    margin: 3em 3em -2.3em 3em;
+    margin: 10em 3em -2.3em 3em;
     padding: .4em 0;
 
 }
@@ -298,7 +298,7 @@ header {
 .my-team-container, .reserve-container {
     background-color: #1a2226;
     height: fit-content;
-    margin: 2em 3em;
+    margin: 2em 3em 2em;
     padding: 3em !important;
     border-radius: 0 .5em 0.5em 0.5em;
     padding: .5em;

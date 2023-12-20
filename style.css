@@ -21,6 +21,7 @@
 body {
     background-image: url(./bilder/background.png);
     background-size: contain;
+    position: relative;
 }
 
 header {
@@ -28,6 +29,10 @@ header {
     flex-direction: column;
     align-items: center;
     margin: 0em;
+    position: fixed;
+    top: 0;
+    background-image: url(./bilder/background.png);
+    width: 100%;
 }
 
 #champions-btn, #myteam-btn {
@@ -49,7 +54,6 @@ header {
     color: var(--yellow);
 }
 
-/* --------CHAMPIONS VIEW------------ */
 .search-wrapper {
     margin: 2em auto;
     padding: 0 0 0 .5em ;
@@ -60,6 +64,7 @@ header {
     display: flex; 
     align-items: center;
     gap: .5em;
+    
 }
 
 .search-wrapper > i {
@@ -77,10 +82,9 @@ header {
     box-shadow: 2px 2px 5px rgb(24, 24, 24) inset;
 }
 
+/* --------CHAMPIONS VIEW------------ */
 .pokemon-container {
-    max-height: 38em;
-    overflow-y: auto;
-    margin: 0 1em;
+    margin: 15em 1em;
 
 }
 .pokemon-list, .reserve-container, .team-members {

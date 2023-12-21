@@ -175,7 +175,10 @@ function displayMyTeam() {
         </div>
         <div class="pokemon-card team">
             <div class="team-img-wrap">
-                <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
+                <div class="info-container">
+                    <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
+                    <img class="info" src="./bilder/info-square-regular-24.png" alt="info">
+                </div>
                 <div class="abilities-container">
                     <p class="abilities">Abilities</p>
                     <p class="abilities-info">${pokemon.abilities}</button>
@@ -252,7 +255,10 @@ function displayReserves() {
         </div>
         <div class="pokemon-card team">
             <div class="team-img-wrap">
-                <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
+                <div class="info-container">
+                    <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
+                    <img class="info" src="./bilder/info-square-regular-24.png" alt="info">
+            </div>
                 <div class="abilities-container">
                     <p class="abilities">Abilities</p>
                     <p class="abilities-info">${pokemon.abilities}</button>

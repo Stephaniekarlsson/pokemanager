@@ -53,7 +53,10 @@ async function createAllPokemonCards() {
             listItem.innerHTML = `
             <div class="pokemon-card">
                 <div class="img-wrap">
-                    <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.name}">${ellipsify(pokemonInfo.name)}</button>
+                    <div class="info-container">
+                        <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemonInfo.name}">${ellipsify(pokemonInfo.name)}</button>
+                        <img class="info" src="./bilder/info-square-regular-24.png" alt="info">
+                    </div>
                     <div class="abilities-container">
                         <p class="abilities">Abilities</p>
                         <p class="abilities-info">${pokemonInfo.abilities}</button>

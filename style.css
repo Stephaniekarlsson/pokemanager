@@ -81,8 +81,16 @@ header {
 
 /* --------CHAMPIONS VIEW------------ */
 .pokemon-container {
-    margin: 15em 1em; 
+    margin: 1em 1em; 
 }
+
+#error-message, .hover-message, .hover-message-team{
+    color: var(--yellow);
+    text-align: center;
+    padding: 1em;
+    margin: 0 auto;
+}
+
 
 #error-message {
     color: var(--yellow);
@@ -93,6 +101,15 @@ header {
     margin: 0 auto;
 }
 
+.hover-message{
+    font-size: .8em;
+    margin: 20em auto 0.5em auto;
+}
+
+.hover-message-team {
+    margin: .5em auto;
+    font-size: .8em;
+}
 /* -------DYNAMISK HTML---------- */
 .pokemon-list, .reserve-container, .team-members {
     display: flex;
@@ -134,17 +151,24 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: .2em;
 }
 
 .info {
     color: var(--yellow);
     width: 22px;
+
 }
 
 .front-img, .team-front-img, .reserve-front-img {
    width: 125px;
-   margin-top: -1.3em;
+}
+
+.front-img {
+    margin-bottom: .1em;
+}
+
+.team-front-img, .reserve-front-img {
+    margin-top: ;
 }
 
 .pokemon-type {
@@ -154,6 +178,16 @@ header {
     margin: 0 auto;
     padding: 0em .8em;
     border-radius: .5em;
+    margin-top: .3em;
+}
+
+.pokemon-type .first {
+    margin-top: 1em;
+}
+
+.team-first {
+    margin-top: -1em;
+
 }
 
 .add-btns {
@@ -204,7 +238,7 @@ header {
     border-radius: 0.7em 0.7em 0 0;
 }
 
-.pokemon-card:hover .abilities-container{
+.info-container:hover .abilities-container{
     transform: translateY(0);
 }
 
@@ -215,8 +249,8 @@ header {
 }
 
 .pokemon-nickname {
-    margin-top: -1em;
-    margin-bottom: 0.1em;
+    margin-top: -.2em;
+    margin-bottom: 0em;
     font-size: 1.2em;
     color: var(--yellow);
 }
@@ -231,6 +265,7 @@ header {
     width: 12em;
     border-radius: .5em;
     align-items: center;
+    justify-content: center;
 
 }
 
@@ -254,6 +289,7 @@ header {
     box-shadow: 2px 0px 2px black inset;
     background-color: var(--dark);
     color: var(--yellow);
+    width: 10em;
 }
 
 .div-nickname > button, .move-or-remove > button {
@@ -320,11 +356,11 @@ header {
     background-color: #1a2226;
     height: fit-content;
     margin: 2em 3em 2em;
-    padding: 2em;
+    padding: .5em;
     border-radius: 0 .5em 0.5em 0.5em;
     border: 2px solid rgb(55,97,168,0.7); 
     box-shadow: 1px 1px 10px var(--blue);
-    min-width: 20em;  
+    min-width: 15em;  
 }
 
 .my-team-container {

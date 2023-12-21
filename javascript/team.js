@@ -177,21 +177,20 @@ function displayMyTeam() {
             <div class="team-img-wrap">
                 <div class="info-container">
                     <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
-                    <img class="info" src="./bilder/info-square-regular-24.png" alt="info">
-                </div>
-                <div class="abilities-container">
-                    <p class="abilities">Abilities</p>
-                    <p class="abilities-info">${pokemon.abilities}</button>
+                    <p class="pokemon-nickname">${pokemon.nickname}</p>
+                    <div class="abilities-container">
+                        <p class="abilities">Abilities</p>
+                        <p class="abilities-info">${pokemon.abilities}</button>
+                    </div>
                 </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
-                <p class="pokemon-nickname">${pokemon.nickname}</p>
-                <p class="pokemon-type">${pokemon.type && pokemon.type[0]}</p>
+                <p class="pokemon-type team-first">${pokemon.type && pokemon.type[0]}</p>
                 <p class="pokemon-type invisible">${pokemon.type && pokemon.type[1]}</p>
                 <div class="nickname-container"></div>
             </div>
         </div>
         <div class="add-btns">
-            <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>                    <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Remove</button>
+            <button class="give-nickname" data-id="${pokemon.id}" data-name="${pokemon.name}">Give nickname</button>                    <button class="remove-from-team" data-id="${pokemon.id}" data-name="${pokemon.name}">Edit Team</button>
         </div>
         `;
 
@@ -257,15 +256,14 @@ function displayReserves() {
             <div class="team-img-wrap">
                 <div class="info-container">
                     <button class="pokemon-name" data-bs-toggle="tooltip" data-bs-placement="top" title="${pokemon.name}">${ellipsify(pokemon.name)}</button>
-                    <img class="info" src="./bilder/info-square-regular-24.png" alt="info">
-            </div>
-                <div class="abilities-container">
-                    <p class="abilities">Abilities</p>
-                    <p class="abilities-info">${pokemon.abilities}</button>
+                    <p class="pokemon-nickname">${pokemon.nickname}</p>
+                    <div class="abilities-container">
+                        <p class="abilities">Abilities</p>
+                        <p class="abilities-info">${pokemon.abilities}</button>
+                    </div>
                 </div>
                 <img class="team-front-img" src="${pokemon.sprite}" alt="${pokemon.name}">
-                <p class="pokemon-nickname">${pokemon.nickname}</p>
-                <p class="pokemon-type">${pokemon.type && pokemon.type[0]}</p>
+                <p class="pokemon-type team-first">${pokemon.type && pokemon.type[0]}</p>
                 <p class="pokemon-type invisible">${pokemon.type && pokemon.type[1]}</p>
                 <div class="nickname-container"></div>
             </div>

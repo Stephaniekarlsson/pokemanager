@@ -1,4 +1,6 @@
 import { pokemonList } from "./main.js";
+
+
 function ellipsify (str) {
     if (str.length > 10) {
         return (str.substring(0, 10) + "...");
@@ -32,21 +34,4 @@ function prettifyAbilities(abilities) {
     return prettified;
 }
 
-function prettifyType(types) {
-    let prettified = '';
-
-    types.forEach((type, index) => {
-        prettified += `${type.type.name.toUpperCase()[0] + type.type.name.slice(1)}`;
-
-        // if (index < types.length -1) {
-        //     prettified += '<br>';
-        // }
-    });
-
-    return prettified;
-}
-
-
-
-
-export { ellipsify, displaySearchedPokemons, prettifyAbilities, prettifyType }
+export { ellipsify, displaySearchedPokemons, prettifyAbilities}

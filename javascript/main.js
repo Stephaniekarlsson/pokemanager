@@ -1,4 +1,4 @@
-import { ellipsify, displaySearchedPokemons, prettifyAbilities, prettifyType } from "./helpers.js";
+import { ellipsify, displaySearchedPokemons, prettifyAbilities} from "./helpers.js";
 import { getPokemons } from "./pokemons.actions.js";
 import { displayMyTeam, displayReserves, myTeamList, reserveList, memberAlert } from "./team.js";
 const pokemonList = document.querySelector('.pokemon-list');

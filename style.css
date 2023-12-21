@@ -10,11 +10,8 @@
 :root {
     --yellow: #feca1b;
     --blue: #3761a8;
-    --red: #f50001;
     --dark: #273135;
     --grayscale-medium: #4e5355;
-    --grayscale-dark: #444c50;
-    --grayscale-light: #acacac;
     --grey: #303536;
 }
 
@@ -65,7 +62,6 @@ header {
     display: flex; 
     align-items: center;
     gap: .5em;
-    
 }
 
 .search-wrapper > i {
@@ -85,9 +81,19 @@ header {
 
 /* --------CHAMPIONS VIEW------------ */
 .pokemon-container {
-    margin: 15em 1em;
-
+    margin: 15em 1em; 
 }
+
+#error-message {
+    color: var(--yellow);
+    font-size: 1.5em;
+    text-align: center;
+    padding: 1em;
+    width: 10em;
+    margin: 0 auto;
+}
+
+/* -------DYNAMISK HTML---------- */
 .pokemon-list, .reserve-container, .team-members {
     display: flex;
     flex-wrap: wrap;
@@ -95,26 +101,6 @@ header {
     align-items: center;
     gap: 2em;
 }
-
-.team-members{
-    position: relative;
-}
-
-/* .list-item, .team-item, .reserve-item {
-    background-color: var(--grayscale-medium);
-    margin: 1em .5em;
-    border-radius: .5em;
-    border: 1px solid var(--yellow);
-    box-shadow: 0px 1px 10px var(--yellow);
-    width: 12em;
-    height: 15.5em;
-    text-align: center;
-    cursor: pointer;
-}
-
-.team-item, .reserve-item {
-    height: 19.2em;
-} */
 
 .pokemon-card {
     background-color: var(--grayscale-medium);
@@ -132,50 +118,60 @@ header {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+
 }
 
-.pokemon-card .team {
-    height: 18.6em;
-    margin-top: 0;
+.pokemon-name {
+    color: var(--yellow);
+    font-size: 1.5em;
+    cursor: pointer;
+    background: none;
+    border: none;
+    margin-top: .5em;
 }
-
-
-.number-wrap {
-    min-height: 16px;
-    text-align: left;
-    padding: 0 8px;
-    color: var(--dark);
-    background-color: rgb(245,0,1, 0.3);
-    border-radius: .5em 0;
-    margin: .1em;
-    width: fit-content;
-}
-
 
 .front-img, .team-front-img, .reserve-front-img {
    width: 125px;
-   margin-top: -1.2em;
+   margin-top: .3em;
 }
 
-.front-img {
-    margin-top: .3em;
+.pokemon-type {
+    color: #fffaec;
+    font-size: 1em;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0em .8em;
+    border-radius: .5em;
 }
 
-.pokemon-name, .team-pokemon-name {
-    color: var(--yellow);
-    padding: 1.6em 0 0 0;
-    margin-top: -1em;
-    border-radius: .5em .5em 0 0;
-    font-size: 1.5em;
-    text-overflow: ellipsis;
-    cursor: pointer;
-    background: none;
-    border: none
+.add-btns {
+    margin-top: -1.1em;
+    display: flex;
+    flex-direction: column;
+    gap: .4em;
 }
 
-.team-pokemon-name {
-    padding: 0;
-    margin-bottom: 0em;
+.add-to-team, .give-nickname, .remove-from-team {
+    padding: .2em;
+    border-radius: .5em;
+    background-color: var(--yellow);
+    color: var(--dark);
+    margin: .6em 1em;
+    border: none;
+    box-shadow: 0px 0px 5px rgb(55,97,168);
+}
+
+.remove-from-team {
+    margin-top: 0em;
+}
+
+.give-nickname {
+    margin-bottom: 0.2em;
+}
+
+.add-to-team:hover, #champions-btn:hover, #myteam-btn:hover, .give-nickname:hover, .remove-from-team:hover {
+    background-color: #cea10c;
+     transition: all ease-in .3s;
 }
 
 .abilities-container {
@@ -206,62 +202,11 @@ header {
     font-size: 1.2em;
 }
 
-.abilities-info {
-    border: none;
-    background: none;
-    font-size: 700;
-}
-
-.pokemon-type {
-    color: #fffaec;
-    font-size: 1em;
-    width: fit-content;
-    margin: 0 auto;
-    padding: 0em .8em;
-    border-radius: .5em;
-    margin-bottom: .2em ;
-}
-
-.add-btns {
-    margin-top: -1.2em;
-    padding: .3em 0 .6em 0;
-    border-radius: 0 0 .5em .5em;
-    display: flex;
-    flex-direction: column;
-    gap: .4em;
-
-}
-
-.add-to-team, .give-nickname, .remove-from-team {
-    padding: .2em;
-    border-radius: .5em;
-    background-color: var(--yellow);
-    color: var(--dark);
-    margin: .6em 1em;
-    border: none;
-    box-shadow: 1px 1px 5px rgb(26, 26, 26);
-}
-
-.remove-from-team {
-    margin-top: 0em;
-}
-
-.give-nickname {
-    margin-bottom: 0.2em;
-}
-
-.add-to-team:hover, #champions-btn:hover, #myteam-btn:hover, .give-nickname:hover, .remove-from-team:hover {
-    background-color: #cea10c;
-     transition: all ease-in .3s;
-}
-
-#error-message {
+.pokemon-nickname {
+    margin-top: -1em;
+    margin-bottom: 0.1em;
+    font-size: 1.2em;
     color: var(--yellow);
-    font-size: 1.5em;
-    text-align: center;
-    padding: 1em;
-    width: 10em;
-    margin: 0 auto;
 }
 
 .div-nickname, .move-or-remove{
@@ -270,12 +215,18 @@ header {
     background-color: var(--grey);
     box-shadow: 0px 1px 10px var(--yellow);
     padding: 2em;
-    height: fit-content;
+    height: 15.5em;
+    width: 12em;
     border-radius: .5em;
     align-items: center;
-    position: fixed;
-    top: 50%;
-    /* left: 50%; */
+
+}
+
+.nickname-container{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .div-nickname > label {
@@ -284,7 +235,7 @@ header {
 }
 
 .div-nickname > input {
-    margin: .2em;
+    margin: 1.2em;
     padding: 0.1em .5em;
     border-radius: .5em;
     border: 2px solid var(--dark);
@@ -294,92 +245,19 @@ header {
 }
 
 .div-nickname > button, .move-or-remove > button {
-    width: fit-content;
+    margin: .2em;
     padding: .2em 2em;
     border-radius: .5em;
     background-color: var(--dark);
     color: var(--yellow);
-    margin: .2em;
+    border: 2px outset black
 }
 
-/* ------ MY TEAM VIEW -------- */
-.team-view {
-    display: none;
-}
-
-.team-visible {
-    display: flex !important;
-    flex-direction: column;
-    display: none;
-    align-items: center;
-    justify-content: center;
-}
-
-.my-team-top, .reserves-top {
-    color: var(--blue);
-    background-color: var(--yellow);
-    display: inline;
-    padding: .3em 0.5em;
-    border: 3px solid var(--blue);
-    border-bottom: none;
-    border-radius: .5em .5em 0 0;
-    font-weight: 700;
-}
-
-.my-team-top{
-    /* margin-top: 5em; */
-}
-
-.right {
+.move-or-remove {
     display: flex;
-    justify-content: end;
-    margin: 0em 3em -3em 0;
-}
-
-.left {
-    margin: 2em 3em -2.3em 3em;
-    padding: .4em 0;
-
-}
-
-.my-team-container, .reserve-container {
-    background-color: #1a2226;
-    height: fit-content;
-    margin: 2em 3em 2em;
-    padding: 3em !important;
-    border-radius: 0 .5em 0.5em 0.5em;
-    padding: .5em;
-    border: 2px solid rgb(55,97,168,0.7); 
-    box-shadow: 1px 1px 10px var(--blue);
-    min-width: 20em;  
-}
-
-.my-team-container {
-    position: relative;
-
-}
-
-.reverse {
-    border-radius: 0.5em 0 .5em .5em;
-}
-
-.more-members {
-    color: var(--yellow);
-    font-size: 1em;
-    text-align: center;
-    margin: 12em 0em 0em 0em;
-    padding: .5em;
-}
-
-.pokemon-nickname {
-    margin-top: -0.8em;
-    margin-bottom: 0.3em;
-    font-size: 1.2em;
-    color: var(--yellow);
-}
-
-.invisible-member-message {
-    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
 
 .placement-arrows {
@@ -401,6 +279,71 @@ header {
 
 .move-up, .move-down {
     cursor: pointer;
+}
+
+/* --------TEAM VIEV----------- */
+.my-team-top, .reserves-top {
+    color: var(--blue);
+    background-color: var(--yellow);
+    display: inline;
+    padding: .3em 0.5em;
+    border: 3px solid var(--blue);
+    border-bottom: none;
+    border-radius: .5em .5em 0 0;
+    font-weight: 700;
+}
+
+.right {
+    display: flex;
+    justify-content: end;
+    margin: 0em 3em -3em 0;
+}
+
+.left {
+    margin: 2em 3em -2.3em 3em;
+    padding: .4em 0;
+}
+
+.my-team-container, .reserve-container {
+    background-color: #1a2226;
+    height: fit-content;
+    margin: 2em 3em 2em;
+    padding: 2em;
+    border-radius: 0 .5em 0.5em 0.5em;
+    border: 2px solid rgb(55,97,168,0.7); 
+    box-shadow: 1px 1px 10px var(--blue);
+    min-width: 20em;  
+}
+
+.my-team-container {
+    position: relative;
+}
+
+.reverse {
+    border-radius: 0.5em 0 .5em .5em;
+}
+
+.more-members {
+    color: var(--yellow);
+    font-size: 1em;
+    text-align: center;
+    margin: 12em 0em 0em 0em;
+    padding: .5em;
+}
+/* ----------- visibility --------- */
+.team-view {
+    display: none;
+}
+
+.team-visible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.invisible-member-message {
+    display: none;
 }
 
 .invisible {

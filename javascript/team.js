@@ -2,10 +2,6 @@ import { ellipsify } from "./helpers.js";
 const teamMembers = document.querySelector('.team-members')
 const reserveContainer = document.querySelector('.reserve-container')
 const moreMembers = document.querySelector('.more-members')
-const moveUpBtn = document.querySelector('.move-up')
-const moveDownBtn = document.querySelector('.move-down')
-
-
 
 let myTeamList = [];
 let reserveList =[];
@@ -31,6 +27,7 @@ function memberAlert(){
 let selectedPokemon; 
 
 function createNickname(teamItem, pokemonNickname, pokemon) {
+    const nicknameContainer = teamItem.querySelector('.nickname-container')
     const divNickname = document.createElement('div');
     divNickname.className = 'div-nickname';
     divNickname.innerHTML = `
@@ -38,7 +35,8 @@ function createNickname(teamItem, pokemonNickname, pokemon) {
         <input type="text" id="input-nickname" placeholder="Create nickname">
         <button class="btn-nickname" type="submit">Save</button>
     `;
-    teamItem.appendChild(divNickname);
+
+    nicknameContainer.appendChild(divNickname);
 
     const saveNickname = divNickname.querySelector('.btn-nickname');
     const inputNickname = divNickname.querySelector('#input-nickname');
@@ -55,13 +53,14 @@ function createNickname(teamItem, pokemonNickname, pokemon) {
     });
 }
 function moveOrRemove(teamItem, pokemon){
+    const nicknameContainer = teamItem.querySelector('.nickname-container')
     const divMoveorRemove = document.createElement('div');
     divMoveorRemove.className = 'move-or-remove';
     divMoveorRemove.innerHTML = `
         <button class="remove-pokemon" type="submit">Remove</button>
         <button class="move-to-reserve" type="submit">Reserve</button>
     `;
-    teamItem.appendChild(divMoveorRemove);
+    nicknameContainer.appendChild(divMoveorRemove);
 
     const removePokemonBtn = divMoveorRemove.querySelector('.remove-pokemon');
     const moveToReserve = divMoveorRemove.querySelector('.move-to-reserve');
@@ -185,6 +184,7 @@ function displayMyTeam() {
                 <p class="pokemon-nickname">${pokemon.nickname}</p>
                 <p class="pokemon-type">${pokemon.type && pokemon.type[0]}</p>
                 <p class="pokemon-type invisible">${pokemon.type && pokemon.type[1]}</p>
+                <div class="nickname-container"></div>
             </div>
         </div>
         <div class="add-btns">
@@ -261,6 +261,7 @@ function displayReserves() {
                 <p class="pokemon-nickname">${pokemon.nickname}</p>
                 <p class="pokemon-type">${pokemon.type && pokemon.type[0]}</p>
                 <p class="pokemon-type invisible">${pokemon.type && pokemon.type[1]}</p>
+                <div class="nickname-container"></div>
             </div>
         </div>
         <div class="add-btns">
